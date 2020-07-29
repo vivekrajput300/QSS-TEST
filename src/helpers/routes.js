@@ -1,0 +1,5 @@
+const rootPath="/";
+
+export {
+    rootPath
+};
