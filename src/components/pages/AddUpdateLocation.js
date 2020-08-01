@@ -2,10 +2,13 @@ import React from 'react';
 import { reduxForm, Field } from "redux-form";
 import { connect } from 'react-redux';
 import AddUpdateLocationForm from '../forms/AddUpdateLocationForm';
+import * as LOCTAION_STORE from '../../store/Locations';
+import { rootPath } from '../../helpers/routes';
 
 class AddUpdateLocation extends React.Component {
     handleSubmit = fromProps => {
-        console.log("fromProps", fromProps)
+        this.props.addLocation(fromProps);
+        this.props.history.push(rootPath);
     }
 
     render() {
@@ -15,4 +18,10 @@ class AddUpdateLocation extends React.Component {
     }
 };
 
-export default AddUpdateLocation;
+const mapStateToProps = state => ({ 'locations': state.location.locations });
+
+const mapDispatchToProps = dispatch => ({
+    addLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.addLocation(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddUpdateLocation);

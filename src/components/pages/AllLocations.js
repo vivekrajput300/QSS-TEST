@@ -37,13 +37,6 @@ const columns = [
     }
 ];
 
-// function createData(locationName, address, phoneNo, action) {
-//     return { locationName, address, phoneNo, action };
-// }
-// const rows = [
-//     createData('India', 'IN', 1234567891, '')
-// ];
-
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
