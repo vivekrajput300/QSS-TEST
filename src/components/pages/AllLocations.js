@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import { addLocation } from '../../helpers/routes';
 
 const columns = [
     { id: 'locationName', label: 'Location Name', minWidth: 170 },
@@ -70,10 +71,14 @@ function LocationTable(props) {
         setPage(0);
     };
 
+    const moveToAddLocation = () => {
+        props.history.replace(addLocation);
+    }
+
     return (
         <>
             <div className={classes.root}>
-                <Button variant="contained" className='addLocation' color="primary">+ Add Location</Button>
+                <Button variant="contained" className='addLocation' color="primary" onClick={moveToAddLocation}>+ Add Location</Button>
             </div>
             {
                 rows.length ?

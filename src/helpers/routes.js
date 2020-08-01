@@ -1,5 +1,5 @@
 const rootPath = "/";
-const addLocation = "AddLocation";
+const addLocation = "/AddLocation";
 
 export {
     rootPath,
