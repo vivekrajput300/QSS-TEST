@@ -53,9 +53,14 @@ const locationReducer = (state = initialState, action) => {
                 'locations': state.locations
             }
         case ACTION_TYPES.UPDATE_LOCATION:
+            state.locations.forEach((data, index) => {
+                if (data.id === +action.value.id) {
+                    state.locations[index] = action.value
+                }
+            })
             return {
                 ...state,
-                'locations': action.value
+                'locations': state.locations
             }
         default:
             return state;

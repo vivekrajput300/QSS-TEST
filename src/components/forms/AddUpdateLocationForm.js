@@ -33,7 +33,8 @@ const initialValue = props => {
         phoneNo: location ? location.phoneNo : '',
         timeZone: location ? location.timeZone : '',
         facilityTimes: location ? location.facilityTimes : '',
-        appointmentPool: location ? location.appointmentPool : ''
+        appointmentPool: location ? location.appointmentPool : '',
+        id: location ? location.id : '',
     }
 };
 
