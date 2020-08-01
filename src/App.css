@@ -41,6 +41,11 @@
     float: right;
 }
 
+.buttonRight{
+    float: right !important;
+    padding: 10px 10px 10px 10px !important;
+}
+
 .centered {
     position: fixed;
     top: 50%;

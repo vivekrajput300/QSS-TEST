@@ -11,9 +11,11 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import { addLocation } from '../../helpers/routes';
+import { rootPath, addLocation } from '../../helpers/routes';
+import * as LOCTAION_STORE from '../../store/Locations';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -43,9 +45,9 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    { id: 'locationName', numeric: false, label: 'Location Name', minWidth: 170 },
-    { id: 'address', numeric: false, label: 'Address', minWidth: 100 },
-    { id: 'phoneNo', label: 'Phone No.', minWidth: 170, align: 'right', numeric: true }
+    { id: 'locationName', numeric: false, label: 'Location Name' },
+    { id: 'address', numeric: false, label: 'Address' },
+    { id: 'phoneNo', label: 'Phone No.', numeric: true }
 ];
 
 function EnhancedTableHead(props) {
@@ -157,8 +159,6 @@ function LocationTable(props) {
         setPage(0);
     };
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
     const usFormatNo = (value) => {
         let cleaned = ('' + value).replace(/\D/g, '');
         let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -177,6 +177,9 @@ function LocationTable(props) {
                 rows.length ?
                     <div className={classes.root}>
                         <Paper className={classes.paper}>
+                            <div>
+                                <h2>Locations</h2>
+                            </div>
                             <TableContainer>
                                 <Table>
                                     <EnhancedTableHead
@@ -195,19 +198,19 @@ function LocationTable(props) {
                                                 return (
                                                     <TableRow key={index}>
                                                         <TableCell>{row.locationName}</TableCell>
-                                                        <TableCell align="right">{row.address}</TableCell>
-                                                        <TableCell align="right">{usFormatNo(row.phoneNo)}</TableCell>
-                                                        <TableCell padding="checkbox">
-                                                            <Button variant="contained" className='addLocation' color="primary" onClick={moveToAddLocation}>+ Add Location</Button>
+                                                        <TableCell>{row.address}</TableCell>
+                                                        <TableCell>{usFormatNo(row.phoneNo)}</TableCell>
+                                                        <TableCell align="right">
+                                                            <EditIcon onClick={() => props.updateLocation({ ...row, index: index })} />
+                                                            <DeleteIcon onClick={() => {
+                                                                props.deleteLocation({ ...row, index: index });
+                                                                props.history.replace(rootPath);
+                                                            }} />
                                                         </TableCell>
                                                     </TableRow>
                                                 );
-                                            })}
-                                        {emptyRows > 0 && (
-                                            <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                                                <TableCell colSpan={6} />
-                                            </TableRow>
-                                        )}
+                                            })
+                                        }
                                     </TableBody>
                                 </Table>
                             </TableContainer>
@@ -235,4 +238,9 @@ function LocationTable(props) {
 
 const mapStateToProps = state => ({ 'locations': state.location.locations });
 
-export default connect(mapStateToProps)(LocationTable);
+const mapDispatchToProps = dispatch => ({
+    updateLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.updateLocation(value)),
+    deleteLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.deleteLocation(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationTable);

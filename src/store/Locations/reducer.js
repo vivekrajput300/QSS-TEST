@@ -27,8 +27,8 @@ const address = (values) => {
 const locationReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION_TYPES.ADD_LOCATION:
-            console.log("action", action.value)
-            let newLocations = state.locations;
+            let newLocations = [];
+            newLocations = state.locations;
             newLocations.push({
                 locationName: action.value.locationName,
                 address: address(action.value),
@@ -40,9 +40,10 @@ const locationReducer = (state = initialState, action) => {
                 'locations': newLocations
             }
         case ACTION_TYPES.DELETE_LOCATION:
+            state.locations.splice(action.value.index, 1);
             return {
                 ...state,
-                'locations': action.value
+                'locations': state.locations
             }
         case ACTION_TYPES.UPDATE_LOCATION:
             return {

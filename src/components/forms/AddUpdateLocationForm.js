@@ -122,10 +122,10 @@ function AddUpdateLocationForm(props) {
                 />
             </div>
             <div>
-                <Button variant="contained" color="secondary" onClick={props.cancel}>
+                <Button variant="contained" className="buttonRight" color="secondary" onClick={props.cancel}>
                     Cancel
                 </Button>
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" className="buttonRight" color="primary">
                     Save
                 </Button>
             </div>
