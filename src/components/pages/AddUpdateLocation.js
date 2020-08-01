@@ -1,5 +1,4 @@
 import React from 'react';
-import { reduxForm, Field } from "redux-form";
 import { connect } from 'react-redux';
 import AddUpdateLocationForm from '../forms/AddUpdateLocationForm';
 import * as LOCTAION_STORE from '../../store/Locations';
@@ -11,9 +10,13 @@ class AddUpdateLocation extends React.Component {
         this.props.history.push(rootPath);
     }
 
+    cancel = () => {
+        this.props.history.push(rootPath);
+    }
+
     render() {
         return (
-            <AddUpdateLocationForm onSubmit={this.handleSubmit.bind(this)}></AddUpdateLocationForm>
+            <AddUpdateLocationForm onSubmit={this.handleSubmit.bind(this)} cancel={this.cancel}></AddUpdateLocationForm>
         )
     }
 };
