@@ -27,17 +27,24 @@ const address = (values) => {
 const locationReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION_TYPES.ADD_LOCATION:
-            let newLocations = [];
-            newLocations = state.locations;
-            newLocations.push({
+            state.locations.push({
+                id: new Date().getTime(),
                 locationName: action.value.locationName,
                 address: address(action.value),
                 phoneNo: action.value.phoneNo,
-                action: ''
+                addressLine1: action.value.addressLine1,
+                suiteNo: action.value.suiteNo,
+                addressLine2: action.value.addressLine2,
+                city: action.value.city,
+                state: action.value.state,
+                zipCode: action.value.zipCode,
+                timeZone: action.value.timeZone,
+                facilityTimes: action.value.facilityTimes,
+                appointmentPool: action.value.appointmentPool
             })
             return {
                 ...state,
-                'locations': newLocations
+                'locations': state.locations
             }
         case ACTION_TYPES.DELETE_LOCATION:
             state.locations.splice(action.value.index, 1);

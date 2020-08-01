@@ -4,27 +4,31 @@ import AddUpdateLocationForm from '../forms/AddUpdateLocationForm';
 import * as LOCTAION_STORE from '../../store/Locations';
 import { rootPath } from '../../helpers/routes';
 
-class AddUpdateLocation extends React.Component {
-    handleSubmit = fromProps => {
-        this.props.addLocation(fromProps);
-        this.props.history.push(rootPath);
+function AddUpdateLocation(props) {
+    const handleSubmit = fromProps => {
+        if (fromProps.id) {
+            props.updateLocation(fromProps);
+            props.history.push(rootPath);
+        } else {
+            props.addLocation(fromProps);
+            props.history.push(rootPath);
+        }
     }
 
-    cancel = () => {
-        this.props.history.push(rootPath);
+    const cancel = () => {
+        props.history.push(rootPath);
     }
 
-    render() {
-        return (
-            <AddUpdateLocationForm onSubmit={this.handleSubmit.bind(this)} cancel={this.cancel}></AddUpdateLocationForm>
-        )
-    }
+    return (
+        <AddUpdateLocationForm onSubmit={handleSubmit.bind(this)} cancel={cancel} addedLocations={props.locations}></AddUpdateLocationForm>
+    )
 };
 
 const mapStateToProps = state => ({ 'locations': state.location.locations });
 
 const mapDispatchToProps = dispatch => ({
-    addLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.addLocation(value))
+    addLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.addLocation(value)),
+    updateLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.updateLocation(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUpdateLocation);

@@ -16,18 +16,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const initialValue = props => {
+    let location = {};
+    if (window.location.search) {
+        location = props.addedLocations.find(data => {
+            return data.id === +(window.location.search.split('=')[1])
+        })
+    }
     return {
-        locationName: '',
-        addressLine1: '',
-        suiteNo: '',
-        addressLine2: '',
-        city: '',
-        state: '',
-        zipCode: '',
-        phoneNo: '',
-        timeZone: '',
-        facilityTimes: '',
-        appointmentPool: ''
+        locationName: location ? location.locationName : '',
+        addressLine1: location ? location.addressLine1 : '',
+        suiteNo: location ? location.suiteNo : '',
+        addressLine2: location ? location.addressLine2 : '',
+        city: location ? location.city : '',
+        state: location ? location.state : '',
+        zipCode: location ? location.zipCode : '',
+        phoneNo: location ? location.phoneNo : '',
+        timeZone: location ? location.timeZone : '',
+        facilityTimes: location ? location.facilityTimes : '',
+        appointmentPool: location ? location.appointmentPool : ''
     }
 };
 
@@ -50,7 +56,7 @@ function AddUpdateLocationForm(props) {
     return (
         <form className={classes.root} onSubmit={handleSubmit} noValidate>
             <div>
-                <h2>Add Locations</h2>
+                <h2>{window.location.search ? 'Edit Locations' : 'Add Locations'}</h2>
             </div>
             <div>
                 <Field
@@ -126,7 +132,7 @@ function AddUpdateLocationForm(props) {
                     Cancel
                 </Button>
                 <Button type="submit" variant="contained" className="buttonRight" color="primary">
-                    Save
+                    {window.location.search ? 'Update' : 'Save'}
                 </Button>
             </div>
         </form>

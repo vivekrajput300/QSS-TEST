@@ -14,7 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import { rootPath, addLocation } from '../../helpers/routes';
+import { rootPath, addLocation, editLocation } from '../../helpers/routes';
 import * as LOCTAION_STORE from '../../store/Locations';
 
 
@@ -201,10 +201,11 @@ function LocationTable(props) {
                                                         <TableCell>{row.address}</TableCell>
                                                         <TableCell>{usFormatNo(row.phoneNo)}</TableCell>
                                                         <TableCell align="right">
-                                                            <EditIcon onClick={() => props.updateLocation({ ...row, index: index })} />
+                                                            <EditIcon onClick={() => props.history.push(`${editLocation}?locationId=${row.id}`
+                                                            )} />
                                                             <DeleteIcon onClick={() => {
                                                                 props.deleteLocation({ ...row, index: index });
-                                                                props.history.replace(rootPath);
+                                                                props.history.push(rootPath);
                                                             }} />
                                                         </TableCell>
                                                     </TableRow>
@@ -239,7 +240,6 @@ function LocationTable(props) {
 const mapStateToProps = state => ({ 'locations': state.location.locations });
 
 const mapDispatchToProps = dispatch => ({
-    updateLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.updateLocation(value)),
     deleteLocation: (value) => dispatch(LOCTAION_STORE.ACTION_CREATORS.deleteLocation(value)),
 });
 

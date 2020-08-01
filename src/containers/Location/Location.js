@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { rootPath, addLocation } from '../../helpers/routes';
+import { rootPath, addLocation, editLocation } from '../../helpers/routes';
 import AllLocations from '../../components/pages/AllLocations';
 import AddUpdateLocation from '../../components/pages/AddUpdateLocation'
 
@@ -10,6 +10,7 @@ function Location() {
         <Switch>
             <Route path={rootPath} exact={true} component={AllLocations} />
             <Route path={addLocation} exact={true} component={AddUpdateLocation} />
+            <Route path={editLocation} exact={true} component={AddUpdateLocation} />
             <Route path="*" exact render={() => (<div>Page Not Found</div>)} />
         </Switch>
     )
