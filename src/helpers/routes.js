@@ -1,7 +1,7 @@
-const rootPath="/";
-const Locations = "locations"
+const rootPath = "/";
+const addLocation = "AddLocation";
 
 export {
     rootPath,
-    Locations
+    addLocation
 };

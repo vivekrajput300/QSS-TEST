@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 
 const columns = [
     { id: 'locationName', label: 'Location Name', minWidth: 170 },
@@ -34,24 +36,27 @@ const columns = [
     }
 ];
 
-function createData(locationName, address, phoneNo, action) {
-    return { locationName, address, phoneNo, action };
-}
+// function createData(locationName, address, phoneNo, action) {
+//     return { locationName, address, phoneNo, action };
+// }
+// const rows = [
+//     createData('India', 'IN', 1234567891, '')
+// ];
 
-const rows = [
-    createData('India', 'IN', 1234567891, '')
-];
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        '& > *': {
+            margin: theme.spacing(2),
+        },
     },
     container: {
         maxHeight: 440,
     },
-});
+}));
 
-export default function StickyHeadTable() {
+function LocationTable(props) {
+    const rows = props.locations;
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -67,6 +72,9 @@ export default function StickyHeadTable() {
 
     return (
         <>
+            <div className={classes.root}>
+                <Button variant="contained" className='addLocation' color="primary">+ Add Location</Button>
+            </div>
             {
                 rows.length ?
                     <Paper className={classes.root}>
@@ -86,9 +94,9 @@ export default function StickyHeadTable() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                    {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                         return (
-                                            <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                                 {columns.map((column) => {
                                                     const value = row[column.id];
                                                     return (
@@ -113,8 +121,16 @@ export default function StickyHeadTable() {
                             onChangeRowsPerPage={handleChangeRowsPerPage}
                         />
                     </Paper>
-                    : <div> Kindly Add your location first</div>
+                    :
+                    <div className="centered">
+                        <h3>Kindly Add Your Location First</h3>
+                        <p>There is no location added right now.</p>
+                    </div>
             }
         </>
     );
 }
+
+const mapStateToProps = state => ({ 'locations': state.location.locations });
+
+export default connect(mapStateToProps)(LocationTable);
