@@ -8,6 +8,11 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const styles = (theme) => ({
     root: {
@@ -49,27 +54,86 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-function FacilityTimes(props) {
-    return (
-        <div>
-            <Dialog onClose={props.handleClose} aria-labelledby="customized-dialog-title" open={props.open}>
-                <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
-                    Facility Times
+class FacilityTimes extends React.Component {
+    render() {
+        return (
+            <div>
+                <Dialog onClose={this.props.handleClose} aria-labelledby="customized-dialog-title" open={this.props.open}>
+                    <DialogTitle id="customized-dialog-title" onClose={this.props.handleClose}>
+                        Facility Times
                     </DialogTitle>
-                <DialogContent dividers>
-
-                </DialogContent>
-                <DialogActions>
-                    <Button variant="contained" className="buttonRight" color="secondary" onClick={props.handleClose}>
-                        Cancel
+                    <DialogContent dividers>
+                        <FormControl component="fieldset">
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Sun"
+                                    control={<Checkbox color="primary" />}
+                                    label="Sun"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Mon"
+                                    control={<Checkbox color="primary" />}
+                                    label="Mon"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Tue"
+                                    control={<Checkbox color="primary" />}
+                                    label="Tue"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Wed"
+                                    control={<Checkbox color="primary" />}
+                                    label="Wed"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Thr"
+                                    control={<Checkbox color="primary" />}
+                                    label="Thr"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Fri"
+                                    control={<Checkbox color="primary" />}
+                                    label="Fri"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value="Sat"
+                                    control={<Checkbox color="primary" />}
+                                    label="Sat"
+                                    labelPlacement="end"
+                                />
+                            </FormGroup>
+                        </FormControl>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant="contained" className="buttonRight" color="secondary" onClick={this.props.handleClose}>
+                            Cancel
                         </Button>
-                    <Button variant="contained" className="buttonRight padLeft_10" color="primary" onClick={props.handleSave}>
-                        Save
+                        <Button variant="contained" className="buttonRight padLeft_10" color="primary" onClick={this.props.handleSave}>
+                            Save
                         </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
-    );
+                    </DialogActions>
+                </Dialog>
+            </div>
+        )
+    }
 }
 
 export default FacilityTimes;
