@@ -3,8 +3,10 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import { RenderInput } from '../atoms/input';
+import { renderSelectDropDown } from '../atoms/inputDropdown';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,6 +49,11 @@ const validate = formProps => {
         if (!formProps[field]) {
             errors[field] = 'Required';
         }
+        if (formProps.zipCode) {
+            if (!/^[a-zA-Z0-9\-_]{0,10}$/i.test(formProps.zipCode)) {
+                errors.zipCode = 'Please enter a valid Zip code (Alphanumeric 5-10 chars, No space allowed)';
+            }
+        }
     });
     return errors;
 };
@@ -84,18 +91,24 @@ function AddUpdateLocationForm(props) {
                     component={RenderInput}
                     label="Address Line 2"
                 />
-            </div>
-            <div>
                 <Field
                     name="city"
                     component={RenderInput}
                     label="City"
                 />
+            </div>
+            <div className="padLeft_10">
                 <Field
+                    classes={classes}
                     name="state"
-                    component={RenderInput}
+                    component={renderSelectDropDown}
                     label="State"
-                />
+                >
+                    <option value="" />
+                    <option value={'up'}>UP</option>
+                    <option value={'uk'}>UK</option>
+                    <option value={'delhi'}>Delhi</option>
+                </Field>
             </div>
             <div>
                 <Field
@@ -109,12 +122,17 @@ function AddUpdateLocationForm(props) {
                     label="Phone Number"
                 />
             </div>
-            <div>
+            <div className="padLeft_10">
                 <Field
+                    classes={classes}
                     name="timeZone"
-                    component={RenderInput}
+                    component={renderSelectDropDown}
                     label="Time Zone"
-                />
+                >
+                    <option value="" />
+                    <option value={'IST'}>IST</option>
+                    <option value={'UTC'}>UTC</option>
+                </Field>
             </div>
             <div>
                 <Field

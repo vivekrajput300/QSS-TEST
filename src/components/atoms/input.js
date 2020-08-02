@@ -10,13 +10,11 @@ export const RenderInput = ({
     },
     ...custom
 }) => (
-        <>
-            <TextField
-                label={label}
-                error={touched && error}
-                helperText={touched && error}
-                {...input}
-                {...custom}
-            />
-        </>
+        <TextField
+            label={label}
+            error={touched && error}
+            helperText={touched && error}
+            {...input}
+            {...custom}
+        />
     )

@@ -63,3 +63,11 @@
     display: block;
     line-height: 25px;
 }
+
+.padLeft_10{
+    padding-left: 10px !important;
+}
+
+.MuiSelect-select{
+    min-width: 475px !important;
+}
