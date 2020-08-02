@@ -55,6 +55,19 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 class FacilityTimes extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            Sun: { from: '10:30', to: '18:30' },
+            Mon: { from: '10:30', to: '18:30' },
+            Tue: { from: '10:30', to: '18:30' },
+            Wed: { from: '10:30', to: '18:30' },
+            Thr: { from: '10:30', to: '18:30' },
+            Fri: { from: '10:30', to: '18:30' },
+            Sat: { from: '10:30', to: '18:30' },
+        };
+    }
+
     render() {
         return (
             <div>
@@ -71,8 +84,8 @@ class FacilityTimes extends React.Component {
                                     label="Sun"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Sun.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Sun.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
@@ -84,8 +97,8 @@ class FacilityTimes extends React.Component {
                                     label="Mon"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Mon.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Mon.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
@@ -97,8 +110,8 @@ class FacilityTimes extends React.Component {
                                     label="Tue"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Tue.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Tue.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
@@ -110,8 +123,8 @@ class FacilityTimes extends React.Component {
                                     label="Wed"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Wed.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Wed.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
@@ -123,8 +136,8 @@ class FacilityTimes extends React.Component {
                                     label="Thr"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Thr.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Thr.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
@@ -136,8 +149,8 @@ class FacilityTimes extends React.Component {
                                     label="Fri"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Fri.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Fri.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
@@ -149,8 +162,8 @@ class FacilityTimes extends React.Component {
                                     label="Sat"
                                     labelPlacement="end"
                                 />
-                                <TimePicker label={'From'} defaultValue={'10:30'} />
-                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <TimePicker label={'From'} defaultValue={this.state.Sat.from} />
+                                <TimePicker label={'To'} defaultValue={this.state.Sat.to} />
                                 <Button variant="outlined" color="primary">
                                     Apply to All Checked
                                 </Button>
