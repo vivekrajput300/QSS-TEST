@@ -12,7 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import TimePicker from './TimerPicker';
 
 const styles = (theme) => ({
     root: {
@@ -71,6 +71,11 @@ class FacilityTimes extends React.Component {
                                     label="Sun"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                             <FormGroup aria-label="position" row>
                                 <FormControlLabel
@@ -79,6 +84,11 @@ class FacilityTimes extends React.Component {
                                     label="Mon"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                             <FormGroup aria-label="position" row>
                                 <FormControlLabel
@@ -87,6 +97,11 @@ class FacilityTimes extends React.Component {
                                     label="Tue"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                             <FormGroup aria-label="position" row>
                                 <FormControlLabel
@@ -95,6 +110,11 @@ class FacilityTimes extends React.Component {
                                     label="Wed"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                             <FormGroup aria-label="position" row>
                                 <FormControlLabel
@@ -103,6 +123,11 @@ class FacilityTimes extends React.Component {
                                     label="Thr"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                             <FormGroup aria-label="position" row>
                                 <FormControlLabel
@@ -111,6 +136,11 @@ class FacilityTimes extends React.Component {
                                     label="Fri"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                             <FormGroup aria-label="position" row>
                                 <FormControlLabel
@@ -119,6 +149,11 @@ class FacilityTimes extends React.Component {
                                     label="Sat"
                                     labelPlacement="end"
                                 />
+                                <TimePicker label={'From'} defaultValue={'10:30'} />
+                                <TimePicker label={'To'} defaultValue={'18:30'} />
+                                <Button variant="outlined" color="primary">
+                                    Apply to All Checked
+                                </Button>
                             </FormGroup>
                         </FormControl>
                     </DialogContent>

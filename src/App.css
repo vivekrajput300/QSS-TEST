@@ -75,3 +75,7 @@
 .MuiButtonBase-root {
     margin: 10px !important;
 }
+
+.MuiDialog-paperWidthSm {
+    max-width: 800px !important;
+}
