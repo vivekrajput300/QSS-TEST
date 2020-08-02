@@ -58,6 +58,7 @@ class FacilityTimes extends React.Component {
     constructor(props) {
         super(props);
         this.fromTimeHandler = this.fromTimeHandler.bind(this);
+        this.toTimeHandler = this.toTimeHandler.bind(this);
         this.state = {
             facilities: [
                 { name: 'Sun', checked: false, from: '10:30', to: '18:30' },
@@ -72,7 +73,6 @@ class FacilityTimes extends React.Component {
     }
 
     fromTimeHandler = (event, index) => {
-        console.log("event, index", event, index)
         this.state.facilities[index].from = event;
         this.setState({
             ...this.state,
@@ -81,8 +81,6 @@ class FacilityTimes extends React.Component {
     }
 
     toTimeHandler = (event, index) => {
-        console.log("ref", this.fromRef0)
-        console.log("event, index", event, index)
         this.state.facilities[index].to = event;
         this.setState({
             ...this.state,
@@ -96,11 +94,12 @@ class FacilityTimes extends React.Component {
             data.from = this.state.facilities[index].from;
             data.to = this.state.facilities[index].to;
         });
-        this.setState({
-            ...this.state,
-            facilities: this.state.facilities
-        });
-        console.log(this.state)
+        setTimeout(() => {
+            this.setState({
+                ...this.state,
+                facilities: this.state.facilities
+            });
+        })
     }
 
     render() {
@@ -118,22 +117,23 @@ class FacilityTimes extends React.Component {
                                         <FormGroup aria-label="position" row key={index}>
                                             <FormControlLabel
                                                 value={facilityData.checked}
-                                                control={<Checkbox color="primary" />}
+                                                control={<Checkbox color="primary" checked={facilityData.checked} />}
                                                 label={facilityData.name}
                                                 labelPlacement="end"
                                             />
                                             <TimePicker
                                                 label={'From'}
                                                 defaultValue={facilityData.from}
+                                                value={facilityData.from}
                                                 id={'From' + index}
-                                                ref={'FromRef' + index}
-                                                handleChange={(event) => this.fromTimeHandler(event, index)}
+                                                handleChange={(value) => this.fromTimeHandler(value, index)}
                                             />
                                             <TimePicker
                                                 label={'To'}
                                                 defaultValue={facilityData.to}
+                                                value={facilityData.to}
                                                 id={'To' + index}
-                                                handleChange={(event) => this.toTimeHandler(event, index)}
+                                                handleChange={(value) => this.toTimeHandler(value, index)}
                                             />
                                             <Button variant="outlined" color="primary" onClick={() => this.applyToAllChecked(index)}>
                                                 Apply to All Checked

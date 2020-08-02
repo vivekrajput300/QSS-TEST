@@ -23,11 +23,12 @@ export default function TimePicker(props) {
                 label={props.label}
                 type="time"
                 defaultValue={props.defaultValue}
+                value={props.value}
                 className={classes.textField}
                 InputLabelProps={{
                     shrink: true,
                 }}
-                onChange={props.handleChange}
+                onChange={e => props.handleChange(e.target.value)}
                 inputProps={{
                     step: 300, // 5 min
                 }}
