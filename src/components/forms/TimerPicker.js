@@ -27,7 +27,7 @@ export default function TimePicker(props) {
                 InputLabelProps={{
                     shrink: true,
                 }}
-                onChange={props.handleChange && props.handleChange.bind(this)}
+                onChange={props.handleChange}
                 inputProps={{
                     step: 300, // 5 min
                 }}

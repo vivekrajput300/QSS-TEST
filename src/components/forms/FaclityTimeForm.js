@@ -55,8 +55,9 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 class FacilityTimes extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.fromTimeHandler = this.fromTimeHandler.bind(this);
         this.state = {
             facilities: [
                 { name: 'Sun', checked: false, from: '10:30', to: '18:30' },
@@ -68,6 +69,10 @@ class FacilityTimes extends React.Component {
                 { name: 'Sat', checked: false, from: '10:30', to: '18:30' },
             ]
         };
+    }
+
+    fromTimeHandler = (event, index) => {
+        console.log("event", index, event.target.value)
     }
 
     render() {
@@ -89,7 +94,7 @@ class FacilityTimes extends React.Component {
                                                 label={facilityData.name}
                                                 labelPlacement="end"
                                             />
-                                            <TimePicker label={'From'} defaultValue={facilityData.from} id={'From' + index} />
+                                            <TimePicker label={'From'} defaultValue={facilityData.from} id={'From' + index} handleChange={(event) => this.fromTimeHandler(event, index)} />
                                             <TimePicker label={'To'} defaultValue={facilityData.to} id={'To' + index} />
                                             <Button variant="outlined" color="primary">
                                                 Apply to All Checked
