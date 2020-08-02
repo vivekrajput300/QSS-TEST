@@ -90,9 +90,10 @@ class FacilityTimes extends React.Component {
 
     applyToAllChecked = index => {
         this.state.facilities.map(data => {
-            data.checked = true;
-            data.from = this.state.facilities[index].from;
-            data.to = this.state.facilities[index].to;
+            if (data.checked) {
+                data.from = this.state.facilities[index].from;
+                data.to = this.state.facilities[index].to;
+            }
         });
         setTimeout(() => {
             this.setState({
@@ -117,7 +118,14 @@ class FacilityTimes extends React.Component {
                                         <FormGroup aria-label="position" row key={index}>
                                             <FormControlLabel
                                                 value={facilityData.checked}
-                                                control={<Checkbox color="primary" checked={facilityData.checked} />}
+                                                control={<Checkbox color="primary" />}
+                                                onChange={e => {
+                                                    this.state.facilities[index].checked = e.target.checked;
+                                                    this.setState({
+                                                        ...this.state,
+                                                        facilities: this.state.facilities
+                                                    });
+                                                }}
                                                 label={facilityData.name}
                                                 labelPlacement="end"
                                             />
