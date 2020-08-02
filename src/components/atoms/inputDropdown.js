@@ -19,8 +19,8 @@ export const renderSelectDropDown = ({
                 {...input}
                 {...custom}
                 inputProps={{
-                    name: { name },
-                    id: { id }
+                    name: name,
+                    id: id
                 }}
             >
                 {children}
