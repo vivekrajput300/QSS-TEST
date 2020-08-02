@@ -148,7 +148,7 @@ class FacilityTimes extends React.Component {
                         <Button variant="contained" className="buttonRight" color="secondary" onClick={this.props.handleClose}>
                             Cancel
                         </Button>
-                        <Button variant="contained" className="buttonRight padLeft_10" color="primary" onClick={this.props.handleSave}>
+                        <Button variant="contained" className="buttonRight padLeft_10" color="primary" onClick={() => this.props.handleSave(this.state.facilities)}>
                             Save
                         </Button>
                     </DialogActions>

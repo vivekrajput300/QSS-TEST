@@ -161,7 +161,7 @@ function AddUpdateLocationForm(props) {
                         setOpenFacility(true);
                     }}
                 />
-                <FacilityTimes open={openFacility} handleClose={facilyHandleClose} handleSave={facilyHandleSave.bind(this)} />
+                <FacilityTimes open={openFacility} handleClose={facilyHandleClose} handleSave={facilyHandleSave} />
                 <Field
                     name="appointmentPool"
                     component={RenderInput}
