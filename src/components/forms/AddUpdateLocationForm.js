@@ -3,10 +3,10 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import { RenderInput } from '../atoms/input';
 import { renderSelectDropDown } from '../atoms/inputDropdown';
+import FacilityTimes from '../forms/FaclityTimeForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,6 +66,15 @@ const validate = formProps => {
 function AddUpdateLocationForm(props) {
     const { handleSubmit } = props;
     const classes = useStyles();
+    const [openFacility, setOpenFacility] = React.useState(false);
+    const facilyHandleClose = () => {
+        setOpenFacility(false);
+    }
+
+    const facilyHandleSave = facilities => {
+        console.log("facilities", facilities)
+    }
+
     return (
         <form className={classes.root} onSubmit={handleSubmit} noValidate>
             <div>
@@ -146,7 +155,11 @@ function AddUpdateLocationForm(props) {
                     name="facilityTimes"
                     component={RenderInput}
                     label="Facility Times"
+                    onClick={() => {
+                        setOpenFacility(true);
+                    }}
                 />
+                <FacilityTimes open={openFacility} handleClose={facilyHandleClose} handleSave={facilyHandleSave.bind(this)} />
                 <Field
                     name="appointmentPool"
                     component={RenderInput}
@@ -154,11 +167,11 @@ function AddUpdateLocationForm(props) {
                 />
             </div>
             <div>
-                <Button variant="contained" className="buttonRight" color="secondary" onClick={props.cancel}>
-                    Cancel
-                </Button>
                 <Button type="submit" variant="contained" className="buttonRight padLeft_10" color="primary">
                     {window.location.search ? 'Update' : 'Save'}
+                </Button>
+                <Button variant="contained" className="buttonRight" color="secondary" onClick={props.cancel}>
+                    Cancel
                 </Button>
             </div>
         </form>
