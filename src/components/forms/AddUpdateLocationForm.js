@@ -54,6 +54,11 @@ const validate = formProps => {
                 errors.zipCode = 'Please enter a valid Zip code (Alphanumeric 5-10 chars, No space allowed)';
             }
         }
+        if (formProps.phoneNo) {
+            if (!/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/i.test(formProps.phoneNo)) {
+                errors.phoneNo = 'Please enter a valid phone no (US format eq (XXX) XXX-XXXX OR XXX XXX XXXX)';
+            }
+        }
     });
     return errors;
 };
@@ -104,6 +109,7 @@ function AddUpdateLocationForm(props) {
                     component={renderSelectDropDown}
                     label="State"
                 >
+                    {/* This is static data, if data comes from API then we create option dynamically using map and return options */}
                     <option value="" />
                     <option value={'up'}>UP</option>
                     <option value={'uk'}>UK</option>
@@ -129,6 +135,7 @@ function AddUpdateLocationForm(props) {
                     component={renderSelectDropDown}
                     label="Time Zone"
                 >
+                    {/* This is static data, if data comes from API then we create option dynamically using map and return options */}
                     <option value="" />
                     <option value={'IST'}>IST</option>
                     <option value={'UTC'}>UTC</option>
