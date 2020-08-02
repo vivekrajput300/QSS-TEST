@@ -71,3 +71,7 @@
 .MuiSelect-select{
     min-width: 475px !important;
 }
+
+.MuiButtonBase-root {
+    margin: 10px !important;
+}
