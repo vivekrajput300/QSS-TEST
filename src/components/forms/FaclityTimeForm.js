@@ -12,7 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import TimePicker from './TimerPicker';
+import TimePicker from '../atoms/TimerPicker';
 
 const styles = (theme) => ({
     root: {
@@ -72,7 +72,35 @@ class FacilityTimes extends React.Component {
     }
 
     fromTimeHandler = (event, index) => {
-        console.log("event", index, event.target.value)
+        console.log("event, index", event, index)
+        this.state.facilities[index].from = event;
+        this.setState({
+            ...this.state,
+            facilities: this.state.facilities
+        })
+    }
+
+    toTimeHandler = (event, index) => {
+        console.log("ref", this.fromRef0)
+        console.log("event, index", event, index)
+        this.state.facilities[index].to = event;
+        this.setState({
+            ...this.state,
+            facilities: this.state.facilities
+        })
+    }
+
+    applyToAllChecked = index => {
+        this.state.facilities.map(data => {
+            data.checked = true;
+            data.from = this.state.facilities[index].from;
+            data.to = this.state.facilities[index].to;
+        });
+        this.setState({
+            ...this.state,
+            facilities: this.state.facilities
+        });
+        console.log(this.state)
     }
 
     render() {
@@ -94,9 +122,20 @@ class FacilityTimes extends React.Component {
                                                 label={facilityData.name}
                                                 labelPlacement="end"
                                             />
-                                            <TimePicker label={'From'} defaultValue={facilityData.from} id={'From' + index} handleChange={(event) => this.fromTimeHandler(event, index)} />
-                                            <TimePicker label={'To'} defaultValue={facilityData.to} id={'To' + index} />
-                                            <Button variant="outlined" color="primary">
+                                            <TimePicker
+                                                label={'From'}
+                                                defaultValue={facilityData.from}
+                                                id={'From' + index}
+                                                ref={'FromRef' + index}
+                                                handleChange={(event) => this.fromTimeHandler(event, index)}
+                                            />
+                                            <TimePicker
+                                                label={'To'}
+                                                defaultValue={facilityData.to}
+                                                id={'To' + index}
+                                                handleChange={(event) => this.toTimeHandler(event, index)}
+                                            />
+                                            <Button variant="outlined" color="primary" onClick={() => this.applyToAllChecked(index)}>
                                                 Apply to All Checked
                                             </Button>
                                         </FormGroup>
