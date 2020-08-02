@@ -58,13 +58,15 @@ class FacilityTimes extends React.Component {
     constructor() {
         super();
         this.state = {
-            Sun: { from: '10:30', to: '18:30' },
-            Mon: { from: '10:30', to: '18:30' },
-            Tue: { from: '10:30', to: '18:30' },
-            Wed: { from: '10:30', to: '18:30' },
-            Thr: { from: '10:30', to: '18:30' },
-            Fri: { from: '10:30', to: '18:30' },
-            Sat: { from: '10:30', to: '18:30' },
+            facilities: [
+                { name: 'Sun', checked: false, from: '10:30', to: '18:30' },
+                { name: 'Mon', checked: false, from: '10:30', to: '18:30' },
+                { name: 'Tue', checked: false, from: '10:30', to: '18:30' },
+                { name: 'Wed', checked: false, from: '10:30', to: '18:30' },
+                { name: 'Thr', checked: false, from: '10:30', to: '18:30' },
+                { name: 'Fri', checked: false, from: '10:30', to: '18:30' },
+                { name: 'Sat', checked: false, from: '10:30', to: '18:30' },
+            ]
         };
     }
 
@@ -77,97 +79,25 @@ class FacilityTimes extends React.Component {
                     </DialogTitle>
                     <DialogContent dividers>
                         <FormControl component="fieldset">
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Sun"
-                                    control={<Checkbox color="primary" />}
-                                    label="Sun"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Sun.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Sun.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Mon"
-                                    control={<Checkbox color="primary" />}
-                                    label="Mon"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Mon.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Mon.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Tue"
-                                    control={<Checkbox color="primary" />}
-                                    label="Tue"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Tue.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Tue.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Wed"
-                                    control={<Checkbox color="primary" />}
-                                    label="Wed"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Wed.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Wed.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Thr"
-                                    control={<Checkbox color="primary" />}
-                                    label="Thr"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Thr.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Thr.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Fri"
-                                    control={<Checkbox color="primary" />}
-                                    label="Fri"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Fri.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Fri.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel
-                                    value="Sat"
-                                    control={<Checkbox color="primary" />}
-                                    label="Sat"
-                                    labelPlacement="end"
-                                />
-                                <TimePicker label={'From'} defaultValue={this.state.Sat.from} />
-                                <TimePicker label={'To'} defaultValue={this.state.Sat.to} />
-                                <Button variant="outlined" color="primary">
-                                    Apply to All Checked
-                                </Button>
-                            </FormGroup>
+                            {
+                                this.state.facilities.map((facilityData, index) => {
+                                    return (
+                                        <FormGroup aria-label="position" row key={index}>
+                                            <FormControlLabel
+                                                value={facilityData.checked}
+                                                control={<Checkbox color="primary" />}
+                                                label={facilityData.name}
+                                                labelPlacement="end"
+                                            />
+                                            <TimePicker label={'From'} defaultValue={facilityData.from} id={'From' + index} />
+                                            <TimePicker label={'To'} defaultValue={facilityData.to} id={'To' + index} />
+                                            <Button variant="outlined" color="primary">
+                                                Apply to All Checked
+                                            </Button>
+                                        </FormGroup>
+                                    )
+                                })
+                            }
                         </FormControl>
                     </DialogContent>
                     <DialogActions>

@@ -115,6 +115,7 @@ function AddUpdateLocationForm(props) {
                 <Field
                     classes={classes}
                     name="state"
+                    id="State"
                     component={renderSelectDropDown}
                     label="State"
                 >
@@ -141,6 +142,7 @@ function AddUpdateLocationForm(props) {
                 <Field
                     classes={classes}
                     name="timeZone"
+                    id="timeZone"
                     component={renderSelectDropDown}
                     label="Time Zone"
                 >

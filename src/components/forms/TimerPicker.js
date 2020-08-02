@@ -19,7 +19,7 @@ export default function TimePicker(props) {
     return (
         <form className={classes.container} noValidate>
             <TextField
-                id="time"
+                id={props.id}
                 label={props.label}
                 type="time"
                 defaultValue={props.defaultValue}
@@ -27,6 +27,7 @@ export default function TimePicker(props) {
                 InputLabelProps={{
                     shrink: true,
                 }}
+                onChange={props.handleChange && props.handleChange.bind(this)}
                 inputProps={{
                     step: 300, // 5 min
                 }}

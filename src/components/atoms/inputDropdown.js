@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 export const renderSelectDropDown = ({
     input,
     label,
+    id,
     name,
     meta: { touched, error },
     children,
@@ -18,8 +19,8 @@ export const renderSelectDropDown = ({
                 {...input}
                 {...custom}
                 inputProps={{
-                    name: name,
-                    id: 'age-native-simple'
+                    name: { name },
+                    id: { id }
                 }}
             >
                 {children}
